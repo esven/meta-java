@@ -27,7 +27,7 @@ PROVIDES += "${JDKPN}"
 
 DEPENDS = " \
            icedtea7-native zip-native ant-native \
-           zlib \
+           zlib libxslt-native \
 	   jpeg libpng giflib \
            gtk+ glib-2.0 \
            cups fontconfig \
