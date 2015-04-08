@@ -44,11 +44,11 @@ CACAO_URI = "http://icedtea.wildebeest.org/download/drops/cacao/${CACAO_FILE};na
 SRC_URI[cacao.md5sum] = "79f95f0aea4ba04cf2f1a8632ac66d14"
 SRC_URI[cacao.sha256sum] = "4966514c72ee7ed108b882d9b6e65c3adf8a8f9c2dccb029f971b3c8cb4870ab"
 
-JAMVM_VERSION = "ebd11bde0a97b57f0d18938c6b65468d3c932719"
+JAMVM_VERSION = "ec18fb9e49e62dce16c5094ef1527eed619463aa"
 JAMVM_FILE = "jamvm-${JAMVM_VERSION}.tar.gz"
 JAMVM_URI = "http://icedtea.wildebeest.org/download/drops/jamvm/${JAMVM_FILE};name=jamvm;unpack=false"
-SRC_URI[jamvm.md5sum] = "e1c66c6cae16c063f709e6fa0fb92f3c"
-SRC_URI[jamvm.sha256sum] = "2b95a2eeb198e731ff946587457ec44e42937a4192b28ea2a424e88e2b790404"
+SRC_URI[jamvm.md5sum] = "d50ae193d01a9251e10679c7a2cc6ff1"
+SRC_URI[jamvm.sha256sum] = "31810266666c23822942aac62a78019c2c4589e1c5ee48329cbf42652d4437bc"
 
 # Allow overriding this separately
 OEPATCHES = "\
