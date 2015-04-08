@@ -8,8 +8,6 @@ FILESPATH =. "${FILE_DIRNAME}/openjdk-7-75b13:"
 BUILD_DIR = "openjdk.build"
 BUILD_DIR_ECJ = "openjdk.build-ecj"
 
-EXTRA_OECONF += " --disable-system-kerberos "
-
 # Force arm mode for now
 ARM_INSTRUCTION_SET_armv4t = "ARM"
 

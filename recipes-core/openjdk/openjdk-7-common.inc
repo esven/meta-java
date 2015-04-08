@@ -31,7 +31,7 @@ DEPENDS = " \
 	   jpeg libpng giflib \
            gtk+ glib-2.0 \
            cups fontconfig \
-	   rhino \
+           rhino krb5 \
 	   libxt libxinerama libxrender libxtst libxi \
 	   freetype alsa-lib libffi \
           "
