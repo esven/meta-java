@@ -28,13 +28,13 @@ PROVIDES += "${JDKPN}"
 DEPENDS = " \
            icedtea7-native zip-native ant-native \
            zlib libxslt-native \
-	   jpeg libpng giflib \
+           jpeg libpng giflib \
            gtk+ glib-2.0 \
            cups fontconfig \
            rhino krb5 \
-	   libxt libxinerama libxrender libxtst libxi \
-	   freetype alsa-lib libffi \
-          "
+           libxt libxinerama libxrender libxtst libxi \
+           freetype alsa-lib libffi \
+           "
 
 # No package should directly depend on this (it should require
 # java2-runtime instead).
@@ -50,7 +50,7 @@ PRIVATE_LIBS = "\
 	libversionCheck.so libcompiledMethodLoad.so libgctest.so \
 	libheapViewer.so libheapTracker.so libminst.so libmtrace.so \
 	libwaiters.so libhprof.so \
-       "
+	"
 
 export ALT_CUPS_HEADERS_PATH = "${STAGING_INCDIR}"
 export ALT_FREETYPE_HEADERS_PATH = "${STAGING_INCDIR}/freetype2"
@@ -70,7 +70,7 @@ WITH_ADDITIONAL_VMS ?= "--with-additional-vms=cacao,jamvm"
 # e.g. "-j 4".
 
 OPENJDK_PARALLEL_MAKE := "${PARALLEL_MAKE}"
-PARALLEL_MAKE =  ""
+PARALLEL_MAKE = ""
 
 def get_jdk7_jobs(d):
     import bb
@@ -89,7 +89,7 @@ def get_jdk7_jobs(d):
 JDK_JOBS = "${@get_jdk7_jobs(d)}"
 
 EXTRA_OECONF = " \
-        --disable-tests \
+	--disable-tests \
 	--disable-hotspot-tests \
 	--disable-langtools-tests \
 	--disable-jdk-tests \
@@ -99,19 +99,19 @@ EXTRA_OECONF = " \
 	--disable-system-lcms \
 	--disable-bootstrap \
 	\
-        --enable-zero \
+	--enable-zero \
 	\
 	--with-jdk-home=${STAGING_LIBDIR_JVM_NATIVE}/icedtea7-native \
 	--with-rhino=${STAGING_DATADIR_JAVA}/rhino.jar \
 	\
-        --with-openjdk-src-zip=${WORKDIR}/${OPENJDK_FILE} \
+	--with-openjdk-src-zip=${WORKDIR}/${OPENJDK_FILE} \
 	--with-hotspot-src-zip=${WORKDIR}/${HOTSPOT_FILE} \
 	--with-corba-src-zip=${WORKDIR}/${CORBA_FILE} \
 	--with-jaxp-src-zip=${WORKDIR}/${JAXP_FILE} \
 	--with-jaxws-src-zip=${WORKDIR}/${JAXWS_FILE} \
 	--with-jdk-src-zip=${WORKDIR}/${JDK_FILE} \
 	--with-langtools-src-zip=${WORKDIR}/${LANGTOOLS_FILE} \
-        ${WITH_ADDITIONAL_VMS} \
+	${WITH_ADDITIONAL_VMS} \
 	--with-cacao-src-zip=${WORKDIR}/${CACAO_FILE} \
 	--with-jamvm-src-zip=${WORKDIR}/${JAMVM_FILE} \
 	\
@@ -119,7 +119,7 @@ EXTRA_OECONF = " \
 	\
 	--with-pkgversion=${PV} \
 	--with-cc-for-build=${BUILD_CC} \
-       "
+	"
 
 do_configure_prepend() {
   echo "Configure with parallel-jobs: ${JDK_JOBS}"
@@ -144,14 +144,14 @@ do_configure_append() {
 EXTRA_OEMAKE += 'CC="${CC}" CCC="${CXX}" CPP="${CPP}" CXX="${CXX}" CC_FOR_BUILD="${BUILD_CC}"'
 
 EXTRA_OEMAKE += ' \
-                OE_CFLAGS="${TARGET_CFLAGS}" \
-                OE_CPPFLAGS="${TARGET_CPPFLAGS}" \
-                OE_CXXFLAGS="${TARGET_CXXFLAGS}" \
-                OE_LDFLAGS="${TARGET_LDFLAGS}" \
-                ZIPEXE="${STAGING_BINDIR_NATIVE}/zip" \
+		OE_CFLAGS="${TARGET_CFLAGS}" \
+		OE_CPPFLAGS="${TARGET_CPPFLAGS}" \
+		OE_CXXFLAGS="${TARGET_CXXFLAGS}" \
+		OE_LDFLAGS="${TARGET_LDFLAGS}" \
+		ZIPEXE="${STAGING_BINDIR_NATIVE}/zip" \
 		CROSS_COMPILE_ARCH="${JDK_ARCH}" \
 		REQUIRED_ALSA_VERSION="" \
-               '
+		'
 
 # Provides the target architecture to the configure script.
 export LLVM_CONFIGURE_ARCH="${@get_llvm_configure_arch(d)}"
@@ -190,8 +190,8 @@ do_install() {
 		ln -s ${JDK_HOME}/jre/bin/$bf ${D}${JDK_HOME}/bin/$bf
 	done
 
-        install -m644 ${WORKDIR}/jvm.cfg  ${D}${JDK_HOME}/jre/lib/${JDK_ARCH}/
-        # workaround for shared libarary searching
+	install -m644 ${WORKDIR}/jvm.cfg  ${D}${JDK_HOME}/jre/lib/${JDK_ARCH}/
+	# workaround for shared libarary searching
 	ln -sf ${JDK_HOME}/jre/lib/${JDK_ARCH}/server/libjvm.so ${D}${JDK_HOME}/jre/lib/${JDK_ARCH}/
 }
 
@@ -207,21 +207,21 @@ do_install() {
 # runtime)
 # 3) All other packages, including -jdk, are optional and not needed for normal Java apps.
 PACKAGES = " \
-            ${JDKPN}-jre \
-	    ${JDKPN}-jre-dbg \
-            ${JDKPN}-dbg \
-            ${JDKPN}-demo-dbg \
-            ${JDKPN}-demo \
-            ${JDKPN}-source \
-            ${JDKPN}-doc \
-            ${JDKPN}-jdk \
-            ${JDKPN}-java \
-            ${JDKPN}-vm-shark \
-            ${JDKPN}-vm-zero \
-            ${JDKPN}-vm-cacao \
-	    ${JDKPN}-vm-jamvm \
-            ${JDKPN}-common \
-           "
+	${JDKPN}-jre \
+	${JDKPN}-jre-dbg \
+	${JDKPN}-dbg \
+	${JDKPN}-demo-dbg \
+	${JDKPN}-demo \
+	${JDKPN}-source \
+	${JDKPN}-doc \
+	${JDKPN}-jdk \
+	${JDKPN}-java \
+	${JDKPN}-vm-shark \
+	${JDKPN}-vm-zero \
+	${JDKPN}-vm-cacao \
+	${JDKPN}-vm-jamvm \
+	${JDKPN}-common \
+	"
 
 FILES_${JDKPN}-dbg = "\
 	${JDK_HOME}/bin/.debug \
@@ -233,13 +233,13 @@ FILES_${JDKPN}-dbg = "\
 	${JDK_HOME}/jre/lib/${JDK_ARCH}/jli/.debug \
 	${JDK_HOME}/jre/lib/${JDK_ARCH}/native_threads/.debug \
 	${JDK_HOME}/jre/lib/${JDK_ARCH}/server/.debug \
-        ${JDK_HOME}/jre/lib/${JDK_ARCH}/shark/.debug \
-        ${JDK_HOME}/jre/lib/${JDK_ARCH}/cacao/.debug \
-        ${JDK_HOME}/jre/lib/${JDK_ARCH}/jamvm/.debug \
+	${JDK_HOME}/jre/lib/${JDK_ARCH}/shark/.debug \
+	${JDK_HOME}/jre/lib/${JDK_ARCH}/cacao/.debug \
+	${JDK_HOME}/jre/lib/${JDK_ARCH}/jamvm/.debug \
 	${JDK_HOME}/jre/lib/${JDK_ARCH}/headless/.debug \
 	${JDK_HOME}/jre/lib/${JDK_ARCH}/xawt/.debug \
 	${JDK_HOME}/jre/lib/${JDK_ARCH}/client/.debug \
-       "
+	"
 
 FILES_${JDKPN}-demo = "${JDK_HOME}/demo ${JDK_HOME}/sample"
 RDEPENDS_${JDKPN}-demo = "java2-runtime"
@@ -253,7 +253,7 @@ FILES_${JDKPN}-demo-dbg = "\
 	${JDK_HOME}/demo/jvmti/versionCheck/lib/.debug \
 	${JDK_HOME}/demo/jvmti/waiters/lib/.debug \
 	${JDK_HOME}/demo/jvmti/compiledMethodLoad/lib/.debug \
-       "
+	"
 
 FILES_${JDKPN}-source = "${JDK_HOME}/src.zip"
 
@@ -268,27 +268,27 @@ FILES_${JDKPN}-vm-cacao = "${JDK_HOME}/jre/lib/${JDK_ARCH}/cacao/"
 FILES_${JDKPN}-vm-jamvm = "${JDK_HOME}/jre/lib/${JDK_ARCH}/jamvm/"
 
 FILES_${JDKPN}-common = "${JDK_HOME}/jre/ASSEMBLY_EXCEPTION \
-                          ${JDK_HOME}/jre/THIRD_PARTY_README \
-                          ${JDK_HOME}/jre/LICENSE \
-                          ${JDK_HOME}/ASSEMBLY_EXCEPTION \
-                          ${JDK_HOME}/THIRD_PARTY_README \
-                          ${JDK_HOME}/LICENSE \
-                          ${JDK_HOME}/release \
-                          ${JDK_HOME}/jre/lib \
-                         "
+			${JDK_HOME}/jre/THIRD_PARTY_README \
+			${JDK_HOME}/jre/LICENSE \
+			${JDK_HOME}/ASSEMBLY_EXCEPTION \
+			${JDK_HOME}/THIRD_PARTY_README \
+			${JDK_HOME}/LICENSE \
+			${JDK_HOME}/release \
+			${JDK_HOME}/jre/lib \
+			"
 
 FILES_openjdk-7-jre_append = " \
 	${JDK_HOME}/jre/bin/keytool \
-        ${JDK_HOME}/jre/bin/orbd \
+	${JDK_HOME}/jre/bin/orbd \
 	${JDK_HOME}/jre/bin/pack200 \
-        ${JDK_HOME}/jre/bin/rmid \
+	${JDK_HOME}/jre/bin/rmid \
 	${JDK_HOME}/jre/bin/rmiregistry \
-        ${JDK_HOME}/jre/bin/servertool \
+	${JDK_HOME}/jre/bin/servertool \
 	${JDK_HOME}/jre/bin/tnameserv \
-        ${JDK_HOME}/jre/bin/unpack200 \
+	${JDK_HOME}/jre/bin/unpack200 \
 	${JDK_HOME}/jre/bin/policytool \
-        ${JDK_HOME}/jre/bin/javaws \
-       "
+	${JDK_HOME}/jre/bin/javaws \
+	"
 
 RDEPENDS_${JDKPN}-common = "librhino-java"
 
